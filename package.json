@@ -1,0 +1,23 @@
+{
+  "name": "sommieres",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.4",
+    "normalize.css": "^8.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-webpack": "^0.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.12.1",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "tailwindcss": "^0.5.2",
+    "webpack-dev-server": "2.11.2"
+  }
+}
