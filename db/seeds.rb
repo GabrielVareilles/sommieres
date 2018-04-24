@@ -1,83 +1,97 @@
 # frozen_string_literal: true
+
+puts 'Cleaning the database...'
+Room.destroy_all
+
 rooms = [
   {
     name: "Chambre aux Croisillons",
-    photo: "",
+    photos: ['croisillons-1', 'croisillons-2'],
     description: ""
   },
   {
     name: "Chambre aux Mouches",
-    photo: "",
+    photos: ['mouches'],
     description: ""
   },
   {
     name: "Chambre du bout du couloir",
-    photo: "",
+    photos: ['bout'],
     description: ""
   },
   {
     name: "Nouvelle Chambre Jaune de l'angle",
-    photo: "",
+    photos: ['brigants'],
     description: ""
   },
   {
     name: "Grande Chambre Rouge",
-    photo: "",
+    photos: ['rouge-1', 'rouge-2'],
     description: ""
   },
   {
     name: "Chambre Jaune à la douche",
-    photo: "",
+    photos: ['jaune-1', 'jaune-2', 'jaune-3'],
     description: ""
   },
   {
     name: "Chambre Poulailler 1",
-    photo: "",
+    photos: ['poulailler-jaune'],
     description: ""
   },
   {
     name: "Chambre Bleue",
-    photo: "",
+    photos: ['bleue'],
     description: ""
   },
   {
     name: "Chambre de l'évêque de Gap",
-    photo: "",
+    photos: ['gap'],
     description: ""
   },
   {
     name: "Chambre Rose",
-    photo: "",
+    photos: ['rose-1', 'rose-2'],
     description: ""
   },
   {
     name: "Petite chambre suite chambre rose",
-    photo: "",
+    photos: ['suite-rose'],
     description: ""
   },
   {
     name: "Petite chambre verte",
-    photo: "",
+    photos: ['petite-verte'],
     description: ""
   },
   {
     name: "Petite chambre jaune",
-    photo: "",
+    photos: ['petite-jaune'],
     description: ""
   },
   {
     name: "Chambre aux Noix",
-    photo: "",
+    photos: ['noix'],
+    description: ""
+  },
+  {
+    name: "Chambre à l'oeil de boeuf",
+    photos: ['oeil-boeuf'],
+    description: ""
+  },
+  {
+    name: "Petite chambre suite chambre aux Noix",
+    photos: ['petite-noix'],
     description: ""
   },
   {
     name: "Chambre aux deux alcôves",
-    photo: "",
+    photos: ['2-alcoves-1', '2-alcoves-2'],
     description: ""
   },
   {
     name: "Chambre Poulailler 2",
-    photo: "",
+    photos: ['poulailler-2-a'],
     description: ""
   }
 ]

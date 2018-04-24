@@ -33,6 +33,7 @@ gem 'komponent'
 gem 'pundit'
 
 gem 'trestle'
+gem 'trestle-auth'
 
 group :development, :test do
   gem 'pry-byebug'
