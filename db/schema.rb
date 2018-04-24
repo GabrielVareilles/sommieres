@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 2018_04_24_151034) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.string "photos", array: true
     t.text "description"
+    t.string "photos", array: true
+    t.string "expositions", array: true
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
