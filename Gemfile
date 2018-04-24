@@ -32,6 +32,8 @@ gem 'haml-rails', git: 'git://github.com/indirect/haml-rails.git'
 gem 'komponent'
 gem 'pundit'
 
+gem 'trestle'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
