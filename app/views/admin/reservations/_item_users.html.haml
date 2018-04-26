@@ -1,0 +1,5 @@
+.nested-fields-container
+  = form.label :utilisateur
+
+  = form.fields_for :item_users do |item_user|
+    = render 'item_user_fields', f: item_user

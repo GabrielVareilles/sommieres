@@ -34,6 +34,9 @@ gem 'pundit'
 
 gem 'trestle'
 gem 'trestle-auth'
+gem "cocoon"
+
+gem 'money-rails', '~>1'
 
 group :development, :test do
   gem 'pry-byebug'

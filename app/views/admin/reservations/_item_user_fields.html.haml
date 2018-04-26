@@ -1,0 +1,10 @@
+.nested-fields.panel.panel-default
+  .panel-body
+    = link_to_remove_association icon("fa fa-close"), f, class: "btn btn-default btn-sm"
+
+    .row
+      .col-xs-4.col-sm-6= f.select :user_id, User.all
+      .col-xs-4.col-sm-6= f.select :pricing_id, Pricing.all
+    .row
+      .col-xs-4.col-sm-6= f.date_field :start
+      .col-xs-4.col-sm-6= f.date_field :stop

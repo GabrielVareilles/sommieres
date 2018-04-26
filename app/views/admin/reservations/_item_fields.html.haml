@@ -1,0 +1,9 @@
+.nested-fields.panel.panel-default
+  .panel-body
+    = link_to_remove_association icon("fa fa-close"), f, class: "btn btn-default btn-sm"
+
+    .row
+      .col-xs-4.col-sm-4= f.select :room_id, Room.all, label: ''
+
+  .nested-field-links
+    = link_to_add_association 'Ajouter une personne', f, :item_users, class: "btn btn-success"

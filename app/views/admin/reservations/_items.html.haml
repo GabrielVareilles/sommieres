@@ -1,0 +1,13 @@
+.nested-fields-container
+  = form.label :liste_des_chambres
+  = form.fields_for :items do |item|
+    .panel-body
+      .row
+        = item.object.room.name
+        - item.object.item_users.each do |user|
+          .col-xs-12.col-sm-12
+            = "- #{user.user.email}"
+    = render 'item_fields', f: item
+
+  .nested-field-links
+    = link_to_add_association 'Ajouter un chambre', form, :items, class: "btn btn-success"

@@ -7,7 +7,7 @@
 #  expositions :string           is an Array
 #  name        :string
 #  photos      :string           is an Array
-#  status      :integer          default(0)
+#  status      :integer          default("disponible")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

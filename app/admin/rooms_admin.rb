@@ -62,7 +62,7 @@ Trestle.resource(:rooms) do
   # For further information, see the Rails documentation on Strong Parameters:
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
-  # params do |params|
-  #   params.require(:room).permit(:name, ...)
-  # end
+  params do |params|
+    params.require(:room).permit(:name, :description)
+  end
 end

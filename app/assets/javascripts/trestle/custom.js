@@ -5,3 +5,9 @@
 // within individual partials and `require` them here.
 //
 //  e.g. //= require "trestle/custom/my_custom_js"
+
+//= require cocoon
+
+$(document).on('cocoon:after-insert', function(e, fields) {
+  $(Trestle).trigger('init', fields);
+});
