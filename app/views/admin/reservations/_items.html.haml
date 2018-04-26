@@ -4,9 +4,21 @@
     .panel-body
       .row
         = item.object.room.name
-        - item.object.item_users.each do |user|
-          .col-xs-12.col-sm-12
-            = "- #{user.user.email}"
+        %table{class: 'table'}
+          %thead
+            %tr
+              %th nom
+              %th nuitées
+              %th tarif
+              %th sous-total
+          %tbody
+            - item.object.item_users.each do |iu|
+              %tr
+                %td= iu.user.full_name
+                %td= iu.nights
+                %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
+                %td= iu.price
+
     = render 'item_fields', f: item
 
   .nested-field-links

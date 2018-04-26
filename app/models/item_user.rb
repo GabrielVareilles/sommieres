@@ -28,4 +28,13 @@ class ItemUser < ApplicationRecord
   belongs_to :user
   belongs_to :item
   belongs_to :pricing
+
+
+  def nights
+    (stop - start).to_i
+  end
+
+  def price
+    nights * pricing.price_cents / 100.0
+  end
 end

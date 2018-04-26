@@ -38,19 +38,19 @@ class Reservation < ApplicationRecord
 
   def total_price
     reservation_empty?
-    users.reduce(0) do |acc, user|
-      acc + (user.pricing.price_cents * nights(user) / 100.0)
+    item_users.reduce(0) do |acc, item_user|
+      acc + item_user.price
     end
   end
 
   def night_count
     reservation_empty?
-    users.reduce(0) { |acc, user| acc + nights(user) }
+    item_users.reduce(0) { |acc, item_user| acc + nights(item_user) }
   end
 
   def people_count
     reservation_empty?
-    users.size
+    item_users.size
   end
 
   private
@@ -60,12 +60,12 @@ class Reservation < ApplicationRecord
     return nil if items.first.item_users.empty?
   end
 
-  def users
+  def item_users
     items.map { |item| item.item_users}.flatten
   end
 
-  def nights(user)
-    (user.stop - user.start).to_i
+  def nights(item_user)
+    (item_user.stop - item_user.start).to_i
   end
 
 end

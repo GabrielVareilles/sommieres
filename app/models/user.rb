@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :reservations
+  delegate :full_name, to: :profile
 
   def name
     profile.full_name

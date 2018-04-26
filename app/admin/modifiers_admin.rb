@@ -20,7 +20,7 @@ Trestle.resource(:modifiers) do
   #
   form do |modifier|
     text_field :name
-    text_field :description
+    text_area :description
     number_field :percent
   end
 
