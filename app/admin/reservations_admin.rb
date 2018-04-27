@@ -47,13 +47,20 @@ Trestle.resource(:reservations) do
   end
 
   controller do
-    def remove_item
-      p params
+    def item
+      Item.find(params[:item_id]).destroy
+      redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
+    end
+
+    def user
+      ItemUser.find(params[:user_id]).destroy
+      redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
     end
   end
 
   routes do
     delete :item, on: :member
+    delete :user, on: :member
   end
 
   # By default, all parameters passed to the update and create actions will be

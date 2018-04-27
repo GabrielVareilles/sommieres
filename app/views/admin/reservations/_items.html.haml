@@ -4,6 +4,7 @@
     .panel-body
       .row
         = item.object.room.name
+        = link_to 'Retirer la chambre', item_reservations_admin_path(item.object.reservation, item_id: item.object.id), method: :delete
         %table{class: 'table'}
           %thead
             %tr
@@ -18,6 +19,7 @@
                 %td= iu.nights
                 %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
                 %td= iu.price
+                %td= link_to 'remove', user_reservations_admin_path(item.object.reservation, user_id: iu.id), method: :delete
 
     = render 'item_fields', f: item
 
