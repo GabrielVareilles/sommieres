@@ -13,4 +13,5 @@
 #
 
 class Modifier < ApplicationRecord
+  has_many :reservations
 end

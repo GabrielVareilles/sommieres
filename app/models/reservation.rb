@@ -2,45 +2,40 @@
 #
 # Table name: reservations
 #
-#  id         :bigint(8)        not null, primary key
-#  status     :integer          default("pending")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint(8)
+#  id          :bigint(8)        not null, primary key
+#  start       :date
+#  status      :integer          default("pending")
+#  stop        :date
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  modifier_id :bigint(8)
+#  user_id     :bigint(8)
 #
 # Indexes
 #
-#  index_reservations_on_user_id  (user_id)
+#  index_reservations_on_modifier_id  (modifier_id)
+#  index_reservations_on_user_id      (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (modifier_id => modifiers.id)
 #  fk_rails_...  (user_id => users.id)
 #
 
 class Reservation < ApplicationRecord
   belongs_to :user
   has_many :items, dependent: :destroy
+  belongs_to :modifier
   accepts_nested_attributes_for :items
 
   enum status: { pending: 0, accepted: 1, payed: 2 }
 
-  def start_date
-    reservation_empty?
-    # TODO
-    nil
-  end
-
-  def end_date
-    reservation_empty?
-    # TODO
-    nil
-  end
-
   def total_price
     reservation_empty?
-    item_users.reduce(0) do |acc, item_user|
+    total = item_users.reduce(0) do |acc, item_user|
       acc + item_user.price
     end
+    (total * modifier.percent / 100.0).round
   end
 
   def night_count

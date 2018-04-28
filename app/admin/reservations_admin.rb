@@ -10,6 +10,9 @@ Trestle.resource(:reservations) do
     column :titulaire do |record|
       record.user.profile.full_name
     end
+    column :type do |record|
+      "#{record.modifier.name} - #{record.modifier.percent}%"
+    end
     column :status do |record|
       # TODO move this in model or decorator
       case record.status
@@ -20,10 +23,10 @@ Trestle.resource(:reservations) do
       status_tag(record.status, tag)
     end
     column :début do |record|
-      record.start_date
+      record.start
     end
     column :fin do |record|
-      record.end_date
+      record.stop
     end
     column :prix_total do |record|
       number_to_currency(record.total_price, unit: "€", format: '%n %u')
@@ -42,6 +45,9 @@ Trestle.resource(:reservations) do
   form do |reservation|
     row do
       col(xs: 3) { select :user_id, User.includes(:profile).all, label: 'Personne principale' }
+      col(xs: 3) { select :modifier_id, Modifier.all, label: 'Saison' }
+      col(xs: 3) { date_field :start, label: "Jour d'arrivée" }
+      col(xs: 3) { date_field :stop, label: "Jour de départ"  }
     end
     render 'items'
   end

@@ -90,9 +90,13 @@ ActiveRecord::Schema.define(version: 2018_04_25_131859) do
 
   create_table "reservations", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "modifier_id"
+    t.date "start"
+    t.date "stop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.index ["modifier_id"], name: "index_reservations_on_modifier_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -129,5 +133,6 @@ ActiveRecord::Schema.define(version: 2018_04_25_131859) do
   add_foreign_key "items", "reservations"
   add_foreign_key "items", "rooms"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reservations", "modifiers"
   add_foreign_key "reservations", "users"
 end

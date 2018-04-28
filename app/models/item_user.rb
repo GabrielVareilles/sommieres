@@ -29,6 +29,13 @@ class ItemUser < ApplicationRecord
   belongs_to :item
   belongs_to :pricing
 
+  def start
+    super.blank? ? item.reservation.start : super
+  end
+
+  def stop
+    super.blank? ? item.reservation.stop : super
+  end
 
   def nights
     (stop - start).to_i
