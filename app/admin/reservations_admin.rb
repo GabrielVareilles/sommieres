@@ -44,7 +44,7 @@ Trestle.resource(:reservations) do
   #
   form do |reservation|
     tab :edition do
-      render 'actions', resa: reservation
+      render 'actions', resa: reservation if reservation.persisted?
       row do
         col(xs: 3) { select :user_id, User.includes(:profile).all, label: 'Personne principale' }
         col(xs: 3) { select :modifier_id, Modifier.all, label: 'Saison' }
@@ -54,7 +54,7 @@ Trestle.resource(:reservations) do
       render 'items'
     end
     tab :recapitulatif do
-      render 'recap', reservation: reservation
+      render 'recap', reservation: reservation if reservation.persisted?
     end
   end
 
