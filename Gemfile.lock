@@ -294,6 +294,8 @@ GEM
       redis (>= 3.3.5, < 5)
     sidekiq-failures (1.0.0)
       sidekiq (>= 4.0.0)
+    simple_calendar (2.2.7)
+      rails (>= 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -387,6 +389,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sidekiq
   sidekiq-failures
+  simple_calendar (~> 2.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   table_print

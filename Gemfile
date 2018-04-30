@@ -38,6 +38,7 @@ gem 'trestle-search'
 gem "cocoon"
 
 gem 'money-rails', '~>1'
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   gem 'pry-byebug'

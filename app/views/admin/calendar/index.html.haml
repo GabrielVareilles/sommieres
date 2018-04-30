@@ -1,0 +1,19 @@
+/ <%= month_calendar events: @meetings do |date, meetings| %>
+/   <%= date %>
+
+/   <% meetings.each do |meeting| %>
+/     <div>
+/       <%= meeting.name %>
+/     </div>
+/   <% end %>
+/ <% end %>
+
+= month_calendar(attribute: :start, end_attribute: :stop, events: @reservations) do |date, reservations|
+  = date.day
+  %br
+  - reservations.each do |reservation|
+    = link_to edit_reservations_admin_path(reservation) do
+      %span{class: 'badge'}= reservation.id
+  %br
+  - people_count = reservations.map(&:people_count).reduce(:+)
+  %strong= "#{people_count ? 'total: ' + people_count.to_s : nil}"

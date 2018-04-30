@@ -62,7 +62,6 @@ class Reservation < ApplicationRecord
   def nights(item_user)
     (item_user.stop - item_user.start).to_i
   end
-
 end
 
 

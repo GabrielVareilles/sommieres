@@ -7,6 +7,7 @@ Trestle.admin(:calendar) do
 
   controller do
     def index
+      @reservations = Reservation.all
     end
   end
 end
