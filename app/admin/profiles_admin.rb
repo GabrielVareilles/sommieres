@@ -3,6 +3,15 @@ Trestle.resource(:profiles) do
     item :utilisateurs, icon: "fa fa-users", group: :gestion_operationnelle
   end
 
+  search do |query|
+    p query
+    if query
+      Profile.where("lower(first_name) LIKE :query", query: "%#{query.downcase}%")
+             .or(Profile.where("lower(last_name) LIKE :query", query: "%#{query.downcase}%"))
+    else
+      Profile.all
+    end
+  end
   # Customize the table columns shown on the index view.
   #
   scope :all, -> { Profile.includes(:user).all }, default: true

@@ -43,13 +43,19 @@ Trestle.resource(:reservations) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |reservation|
-    row do
-      col(xs: 3) { select :user_id, User.includes(:profile).all, label: 'Personne principale' }
-      col(xs: 3) { select :modifier_id, Modifier.all, label: 'Saison' }
-      col(xs: 3) { date_field :start, label: "Jour d'arrivée" }
-      col(xs: 3) { date_field :stop, label: "Jour de départ"  }
+    tab :edition do
+      render 'actions', resa: reservation
+      row do
+        col(xs: 3) { select :user_id, User.includes(:profile).all, label: 'Personne principale' }
+        col(xs: 3) { select :modifier_id, Modifier.all, label: 'Saison' }
+        col(xs: 3) { date_field :start, label: "Jour d'arrivée" }
+        col(xs: 3) { date_field :stop, label: "Jour de départ"  }
+      end
+      render 'items'
     end
-    render 'items'
+    tab :recapitulatif do
+      render 'recap', reservation: reservation
+    end
   end
 
   controller do
@@ -62,9 +68,23 @@ Trestle.resource(:reservations) do
       ItemUser.find(params[:user_id]).destroy
       redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
     end
+
+    def accept
+      reservation = Reservation.find(params[:id])
+      reservation.accepted!
+      redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
+    end
+
+    def payed
+      reservation = Reservation.find(params[:id])
+      reservation.payed!
+      redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
+    end
   end
 
   routes do
+    put :accept, on: :member
+    put :payed, on: :member
     delete :item, on: :member
     delete :user, on: :member
   end

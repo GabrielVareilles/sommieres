@@ -34,6 +34,7 @@ gem 'pundit'
 
 gem 'trestle'
 gem 'trestle-auth'
+gem 'trestle-search'
 gem "cocoon"
 
 gem 'money-rails', '~>1'

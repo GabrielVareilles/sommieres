@@ -8,7 +8,6 @@ Trestle.resource(:rooms) do
   scope :indisponible, -> { Room.unavailable }
 
   # Customize the table columns shown on the index view.
-  #
   table do
     column :name
     column :description
