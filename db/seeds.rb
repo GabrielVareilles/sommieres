@@ -23,7 +23,7 @@ users = [
 rooms = [
   {
     name: 'Chambre aux Croisillons',
-    photos: ['croisillons-2', 'croisillons-1'],
+    photos: ['croisillons-2.jpg', 'croisillons-1.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 2,
     description: "un lavabo, précaution et respect indispensables
@@ -31,21 +31,21 @@ rooms = [
   },
   {
     name: 'Chambre aux Mouches',
-    photos: ['mouches'],
+    photos: ['mouches.jpg'],
     expositions: ["cour d'honneur", 'clain'],
     capacity: 2,
     description: '2 lits simples 90 x 200, épaisseur matelas 13 cm'
   },
   {
     name: 'Chambre du bout du couloir',
-    photos: ['bout'],
+    photos: ['bout.jpg'],
     expositions: ['clain'],
     capacity: 2,
     description: '1 lit double 140 x 190, épaisseur matelas 13 cm'
   },
   {
     name: "Nouvelle Chambre Jaune de l'angle",
-    photos: ['brigants'],
+    photos: ['brigants.jpg'],
     expositions: %w[village clain],
     capacity: 3,
     description: "3 lits :
@@ -55,7 +55,7 @@ rooms = [
   },
   {
     name: 'Grande Chambre Rouge',
-    photos: ['rouge-1', 'rouge-2'],
+    photos: ['rouge-1.jpg', 'rouge-2.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "un lavabo double et donc pas de jeux d’eau, le salon rose est en
@@ -64,7 +64,7 @@ dessous ! Les volets sont lourds et fragiles, merci de votre précaution...
   },
   {
     name: 'Chambre Jaune à la douche',
-    photos: ['jaune-3', 'jaune-2', 'jaune-1'],
+    photos: ['jaune-3.jpg', 'jaune-2.jpg', 'jaune-1.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "en cas de forte pluie, il est nécessaire de fermer les volets
@@ -73,7 +73,7 @@ de cette chambre, le salon Vareilles en dessous vous en remercie !
   },
   {
     name: 'Chambre Poulailler 1',
-    photos: ['poulailler-jaune'],
+    photos: ['poulailler-jaune.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "entre la chambre jaune à la douche et la chambre de l’évêque de
@@ -85,7 +85,7 @@ Apporter housse de couette car ils sont munis chacun d’une couette 140x190"
   },
   {
     name: 'Chambre Bleue',
-    photos: ['bleue'],
+    photos: ['bleue.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 2,
     description: "un cabinet de toilette en entrant...
@@ -93,7 +93,7 @@ Apporter housse de couette car ils sont munis chacun d’une couette 140x190"
   },
   {
     name: "Chambre de l'évêque de Gap",
-    photos: ['gap'],
+    photos: ['gap.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "une petite salle de bains non autorisée à des enfants sans
@@ -103,7 +103,7 @@ au sol et fuites néfastes pour la grande salle à manger...
   },
   {
     name: 'Chambre Rose',
-    photos: ['rose-1', 'rose-2'],
+    photos: ['rose-1.jpg', 'rose-2.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 2,
     description: " uniquement réservée aux adultes responsables
@@ -111,7 +111,7 @@ au sol et fuites néfastes pour la grande salle à manger...
   },
   {
     name: 'Petite chambre suite chambre rose',
-    photos: ['suite-rose'],
+    photos: ['suite-rose.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 1,
     description: " 1 adulte ou 1 enfant de parents responsables
@@ -120,7 +120,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
   },
   {
     name: 'Petite chambre verte près de la douche',
-    photos: ['petite-verte'],
+    photos: ['petite-verte.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 2,
     description: "côté grande cuisine
@@ -128,7 +128,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
   },
   {
     name: 'Petite chambre jaune près de la douche',
-    photos: ['petite-jaune'],
+    photos: ['petite-jaune.jpg'],
     expositions: ["cour d'honneur"],
     capacity: 1,
     description: "côté grande cuisine
@@ -136,7 +136,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
   },
   {
     name: 'Chambre aux Noix',
-    photos: ['noix'],
+    photos: ['noix.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "un lavabo dans la penderie
@@ -144,7 +144,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
   },
   {
     name: "Chambre à l'oeil de boeuf",
-    photos: ['oeil-boeuf'],
+    photos: ['oeil-boeuf.jpg'],
     expositions: ['jardin haut'],
     capacity: 1,
     description: " lit électrique qui n’est pas un jouet et un lavabo (pas de jeux
@@ -153,7 +153,7 @@ d’eau…)
   },
   {
     name: 'Petite chambre suite chambre aux Noix',
-    photos: ['petite-noix'],
+    photos: ['petite-noix.jpg'],
     expositions: ['jardin haut', 'village'],
     capacity: 3,
     description: "entre l’œil-de-bœuf et la chambre aux noix
@@ -162,7 +162,7 @@ d’eau…)
   },
   {
     name: 'Chambre aux deux alcôves',
-    photos: ['2-alcoves-1', '2-alcoves-2'],
+    photos: ['2-alcoves-1.jpg', '2-alcoves-2.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "un cabinet de toilette avec un lavabo (pas de jeux d’eau) pour
@@ -171,7 +171,7 @@ jeunes respectueux de ce joli lieu
   },
   {
     name: 'Chambre Poulailler 2',
-    photos: ['poulailler-2-a'],
+    photos: ['poulailler-2-a.jpg'],
     expositions: ['village'],
     capacity: 2,
     description: "entre les 2 alcôves et la chambre de l’évêque de Gap : pas de jeunes

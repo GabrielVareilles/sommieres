@@ -5,6 +5,9 @@ Trestle.resource(:reservations) do
 
   # Customize the table columns shown on the index view.
   scope :all, -> { Reservation.includes(:user).all }, default: true
+  scope :en_attente, -> { Reservation.includes(:user).where(status: 'pending') }
+  scope :acceptee, -> { Reservation.includes(:user).where(status: 'accepted') }
+  scope :payee, -> { Reservation.includes(:user).where(status: 'payed') }
 
   table do
     column :titulaire do |record|
@@ -15,7 +18,7 @@ Trestle.resource(:reservations) do
     end
     column :status do |record|
       # TODO move this in model or decorator
-      status_tag(record.btn_class, tag)
+      status_tag(record.status, record.btn_class)
     end
     column :début do |record|
       record.start
