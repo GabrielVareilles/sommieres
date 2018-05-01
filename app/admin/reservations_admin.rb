@@ -15,12 +15,7 @@ Trestle.resource(:reservations) do
     end
     column :status do |record|
       # TODO move this in model or decorator
-      case record.status
-      when 'pending' then tag = :warning
-      when 'accepted' then tag = :primary
-      when 'payed' then tag = :success
-      end
-      status_tag(record.status, tag)
+      status_tag(record.btn_class, tag)
     end
     column :début do |record|
       record.start

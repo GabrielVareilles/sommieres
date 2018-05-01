@@ -1,19 +1,19 @@
-/ <%= month_calendar events: @meetings do |date, meetings| %>
-/   <%= date %>
-
-/   <% meetings.each do |meeting| %>
-/     <div>
-/       <%= meeting.name %>
-/     </div>
-/   <% end %>
-/ <% end %>
-
 = month_calendar(attribute: :start, end_attribute: :stop, events: @reservations) do |date, reservations|
   = date.day
   %br
   - reservations.each do |reservation|
     = link_to edit_reservations_admin_path(reservation) do
-      %span{class: 'badge'}= reservation.id
+      %span{class: "label label-#{reservation.btn_class}", style: "font-size: 11px;", 'data-container' => 'body', 'data-trigger' => 'hover', 'data-placement' => 'bottom', 'data-title' => "Titulaire: #{reservation.full_name}",'data-html' => 'true', 'data-content' => "#{reservation.status_label}#{reservation.participants}"  }= reservation.people_count
   %br
   - people_count = reservations.map(&:people_count).reduce(:+)
-  %strong= "#{people_count ? 'total: ' + people_count.to_s : nil}"
+  - if people_count
+    - percent = (people_count / @capacity.to_f * 100).round.to_s
+    %br
+    .progress
+      .progress-bar{"role" => 'progressbar', "aria-valuenow" => percent, "aria-valuemin" => '0', "aria-valuemax" => '30', 'style' => "width: #{percent}%;" }
+        = percent + '%'
+
+:javascript
+  $(function () {
+    $('[data-trigger="hover"]').popover({ trigger: "hover" })
+  })

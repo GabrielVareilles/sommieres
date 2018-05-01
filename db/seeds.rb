@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 puts 'Cleaning the database...'
+ItemUser.destroy_all
+Item.destroy_all
+Reservation.destroy_all
 Room.destroy_all
 Pricing.destroy_all
 Modifier.destroy_all
@@ -22,6 +25,7 @@ rooms = [
     name: 'Chambre aux Croisillons',
     photos: ['croisillons-2', 'croisillons-1'],
     expositions: ["cour d'honneur"],
+    capacity: 2,
     description: "un lavabo, précaution et respect indispensables
 1 lit double 140 x 190, épaisseur matelas 20 cm (tête et pied de lit fragiles)"
   },
@@ -29,18 +33,21 @@ rooms = [
     name: 'Chambre aux Mouches',
     photos: ['mouches'],
     expositions: ["cour d'honneur", 'clain'],
+    capacity: 2,
     description: '2 lits simples 90 x 200, épaisseur matelas 13 cm'
   },
   {
     name: 'Chambre du bout du couloir',
     photos: ['bout'],
     expositions: ['clain'],
+    capacity: 2,
     description: '1 lit double 140 x 190, épaisseur matelas 13 cm'
   },
   {
     name: "Nouvelle Chambre Jaune de l'angle",
     photos: ['brigants'],
     expositions: %w[village clain],
+    capacity: 3,
     description: "3 lits :
 - 1 très long lit 110 x 210, épaisseur matelas 15 cm (grands draps plats conseillés)
 - 1 lit bateau 100 x 185, épaisseur matelas 13 cm
@@ -50,6 +57,7 @@ rooms = [
     name: 'Grande Chambre Rouge',
     photos: ['rouge-1', 'rouge-2'],
     expositions: ['village'],
+    capacity: 2,
     description: "un lavabo double et donc pas de jeux d’eau, le salon rose est en
 dessous ! Les volets sont lourds et fragiles, merci de votre précaution...
 1 grand lit double 160 x 200, épaisseur matelas 20 cm"
@@ -58,6 +66,7 @@ dessous ! Les volets sont lourds et fragiles, merci de votre précaution...
     name: 'Chambre Jaune à la douche',
     photos: ['jaune-3', 'jaune-2', 'jaune-1'],
     expositions: ['village'],
+    capacity: 2,
     description: "en cas de forte pluie, il est nécessaire de fermer les volets
 de cette chambre, le salon Vareilles en dessous vous en remercie !
 1 lit double 160 x 200, épaisseur matelas 18 cm"
@@ -66,6 +75,7 @@ de cette chambre, le salon Vareilles en dessous vous en remercie !
     name: 'Chambre Poulailler 1',
     photos: ['poulailler-jaune'],
     expositions: ['village'],
+    capacity: 2,
     description: "entre la chambre jaune à la douche et la chambre de l’évêque de
 Gap : pas de jeunes enfants car pas assez de protection aux abords de la fenêtre.
 Cette chambre est réservée aux adolescents sérieux car les batailles de polochons ne sont
@@ -77,6 +87,7 @@ Apporter housse de couette car ils sont munis chacun d’une couette 140x190"
     name: 'Chambre Bleue',
     photos: ['bleue'],
     expositions: ["cour d'honneur"],
+    capacity: 2,
     description: "un cabinet de toilette en entrant...
 1 lit double 140 x 190, épaisseur matelas 18 cm"
   },
@@ -84,6 +95,7 @@ Apporter housse de couette car ils sont munis chacun d’une couette 140x190"
     name: "Chambre de l'évêque de Gap",
     photos: ['gap'],
     expositions: ['village'],
+    capacity: 2,
     description: "une petite salle de bains non autorisée à des enfants sans
 surveillance et donc réservée à des adultes responsables car absence totale de protection
 au sol et fuites néfastes pour la grande salle à manger...
@@ -93,6 +105,7 @@ au sol et fuites néfastes pour la grande salle à manger...
     name: 'Chambre Rose',
     photos: ['rose-1', 'rose-2'],
     expositions: ["cour d'honneur"],
+    capacity: 2,
     description: " uniquement réservée aux adultes responsables
 1 lit double 140 x 190, épaisseur matelas 20 cm"
   },
@@ -100,6 +113,7 @@ au sol et fuites néfastes pour la grande salle à manger...
     name: 'Petite chambre suite chambre rose',
     photos: ['suite-rose'],
     expositions: ["cour d'honneur"],
+    capacity: 1,
     description: " 1 adulte ou 1 enfant de parents responsables
 1 lit bateau 90 x 185, épaisseur matelas 20 cm
 Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
@@ -108,6 +122,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
     name: 'Petite chambre verte près de la douche',
     photos: ['petite-verte'],
     expositions: ["cour d'honneur"],
+    capacity: 2,
     description: "côté grande cuisine
 1 lit double confortable 140 x 190, épaisseur matelas 21 cm"
   },
@@ -115,6 +130,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
     name: 'Petite chambre jaune près de la douche',
     photos: ['petite-jaune'],
     expositions: ["cour d'honneur"],
+    capacity: 1,
     description: "côté grande cuisine
 1 lit simple 90 x 190, épaisseur matelas 13 cm"
   },
@@ -122,6 +138,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
     name: 'Chambre aux Noix',
     photos: ['noix'],
     expositions: ['village'],
+    capacity: 2,
     description: "un lavabo dans la penderie
 1 lit double 160 x 200, épaisseur matelas 18 cm"
   },
@@ -129,6 +146,7 @@ Possibilité d’ajouter 1 lit bébé en toile ou lit parapluie"
     name: "Chambre à l'oeil de boeuf",
     photos: ['oeil-boeuf'],
     expositions: ['jardin haut'],
+    capacity: 1,
     description: " lit électrique qui n’est pas un jouet et un lavabo (pas de jeux
 d’eau…)
 1 lit 120 x 190, épaisseur matelas 15 cm"
@@ -137,6 +155,7 @@ d’eau…)
     name: 'Petite chambre suite chambre aux Noix',
     photos: ['petite-noix'],
     expositions: ['jardin haut', 'village'],
+    capacity: 3,
     description: "entre l’œil-de-bœuf et la chambre aux noix
 2 lits simples 90 x 190, épaisseur matelas 13 cm
 1 lit d’appoint pliable 90 x 190 environ, épaisseur matelas 10 cm"
@@ -145,6 +164,7 @@ d’eau…)
     name: 'Chambre aux deux alcôves',
     photos: ['2-alcoves-1', '2-alcoves-2'],
     expositions: ['village'],
+    capacity: 2,
     description: "un cabinet de toilette avec un lavabo (pas de jeux d’eau) pour
 jeunes respectueux de ce joli lieu
 2 lits bateaux 90/100 x 190, épaisseur matelas 13 cm"
@@ -153,6 +173,7 @@ jeunes respectueux de ce joli lieu
     name: 'Chambre Poulailler 2',
     photos: ['poulailler-2-a'],
     expositions: ['village'],
+    capacity: 2,
     description: "entre les 2 alcôves et la chambre de l’évêque de Gap : pas de jeunes
 enfants car pas assez de protection aux abords de la fenêtre. Cette chambre est réservée
 aux adolescents sérieux car les batailles de polochons ne sont pas autorisées...

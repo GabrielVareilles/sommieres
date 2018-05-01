@@ -3,6 +3,7 @@
 # Table name: rooms
 #
 #  id          :bigint(8)        not null, primary key
+#  capacity    :integer
 #  description :text
 #  expositions :string           is an Array
 #  name        :string
@@ -22,5 +23,9 @@ class Room < ApplicationRecord
 
   def self.expositions
     ["village", "clain", "cour d'honneur", "jardin haut"]
+  end
+
+  def self.total_capacity
+    all.map(&:capacity).reduce(:+)
   end
 end

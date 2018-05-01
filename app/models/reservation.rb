@@ -48,6 +48,33 @@ class Reservation < ApplicationRecord
     item_users.size
   end
 
+  def status_label
+    # TODO decorator
+    '<span class="' + "label label-#{btn_class.to_s}" + '">' + status + '</span>'
+  end
+
+  def btn_class
+    # TODO decorator
+    case status
+    when 'pending'
+     :warning
+    when 'accepted'
+     :primary
+    when 'payed'
+     :success
+    end
+  end
+
+  def participants
+    # TODO decorator
+    item_users.map { |iu| '<p>' + iu.user.profile.full_name + '</p>' }.join
+  end
+
+  def full_name
+    # TODO decorator
+    user.profile.full_name
+  end
+
   private
 
   def reservation_empty?

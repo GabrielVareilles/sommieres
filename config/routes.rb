@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   require "sidekiq/web"
   mount Sidekiq::Web => '/sidekiq'
   scope '(:locale)', locale: /fr/ do
-    root to: 'pages#home'
+    root to: 'calendar_admin/admin#index'
   end
 end

@@ -11,6 +11,9 @@ Trestle.resource(:rooms) do
   table do
     column :name
     column :description
+    column :capacité do |record|
+      record.capacity
+    end
     column :disponibilité do |record|
       status = record.status == 'disponible' ? 'disponible' : 'indisponible'
       case status
@@ -42,8 +45,9 @@ Trestle.resource(:rooms) do
       text_field :name
       text_area :description
       row do
-        col(sm: 6) { select :status, Room.statuses.keys }
-        col(sm: 6) { collection_check_boxes :expositions, Room.expositions, :to_s, :to_s, include_blank: false  }
+        col(sm: 4) { select :status, Room.statuses.keys }
+        col(sm: 4) { number_field :capacity, label: 'capacité' }
+        col(sm: 4) { collection_check_boxes :expositions, Room.expositions, :to_s, :to_s, include_blank: false  }
       end
     end
 
@@ -62,6 +66,6 @@ Trestle.resource(:rooms) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   params do |params|
-    params.require(:room).permit(:name, :description)
+    params.require(:room).permit(:name, :description, :capacity)
   end
 end
