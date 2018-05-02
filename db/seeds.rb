@@ -11,7 +11,6 @@ User.destroy_all
 Profile.destroy_all
 Administrator.destroy_all
 
-
 users = [
   { email: 'gabriel.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
   { email: 'manu.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
