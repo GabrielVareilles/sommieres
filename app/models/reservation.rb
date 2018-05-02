@@ -67,11 +67,22 @@ class Reservation < ApplicationRecord
 
   def participants
     # TODO decorator
-    html = '<br>'
+    html = ''
+    html += '<div class="container">'
+    html += "<div class='row'>"
     items.map do |item|
-      html += "<strong>*** #{item.room.name} ***</strong>"
-      html += item.item_users.map { |iu| '<p>' + iu.profile.full_name + '</p>' }.join
+      html += "<div class='col-xs-4'>"
+      html += "<div class='panel panel-default'>"
+      html += "<div class='panel-heading'>"
+      html += "<span><i class='fa fa-bed'></i>  #{item.room.name}</span>"
+      html += "</div>"
+      html += "<div class='panel-body'>"
+      html += '<ul class="list-unstyled">'
+      html += item.item_users.map { |iu| '<li><i class="fa fa-user"></i>  ' + iu.profile.full_name + '</li>' }.join
+      html += '</ul>'
+      html += "</div></div></div>"
     end
+    html += "</div></div>"
     html
   end
 

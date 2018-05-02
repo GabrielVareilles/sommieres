@@ -3,7 +3,7 @@
   %br
   - reservations.each do |reservation|
     = link_to edit_reservations_admin_path(reservation) do
-      %span{class: "label label-#{reservation.btn_class}", style: "font-size: 11px;", 'data-container' => 'body', 'data-trigger' => 'hover', 'data-placement' => 'bottom', 'data-title' => "Titulaire: #{reservation.full_name}",'data-html' => 'true', 'data-content' => "#{reservation.status_label}#{reservation.participants}"  }= reservation.people_count
+      %span{class: "label label-#{reservation.btn_class}", style: "font-size: 11px", 'data-container' => 'body', 'data-trigger' => 'hover', 'data-placement' => 'bottom', 'data-title' => "Titulaire: #{reservation.full_name} #{reservation.status_label} prix: #{reservation.total_price} €",'data-html' => 'true', 'data-content' => "#{reservation.participants}"  }= reservation.people_count
   %br
   - people_count = reservations.map(&:people_count).reduce(:+)
   - if people_count
@@ -17,3 +17,11 @@
   $(function () {
     $('[data-trigger="hover"]').popover({ trigger: "hover" })
   })
+
+:css
+  .popover {
+      max-width: none;
+  }
+  .panel {
+    height: 140px;
+  }
