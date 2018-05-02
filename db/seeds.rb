@@ -17,7 +17,8 @@ users = [
   { email: 'manu.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
   { email: 'isa.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
   { email: 'beavs@free.fr', password: 'password', password_confirmation: 'password'},
-  { email: 'lodv@noos.fr', password: 'password', password_confirmation: 'password'}
+  { email: 'lodv@noos.fr', password: 'password', password_confirmation: 'password'},
+  { email: 'jeancassien.gombeaud@gmail.com ', password: 'password', password_confirmation: 'password'}
 ]
 
 rooms = [
