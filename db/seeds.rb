@@ -14,10 +14,10 @@ Administrator.destroy_all
 
 users = [
   { email: 'gabriel.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
-  { email: 'adolescents@test.com', password: 'password', password_confirmation: 'password'},
-  { email: 'adulte1@test.com', password: 'password', password_confirmation: 'password'},
-  { email: 'adulte2@test.com', password: 'password', password_confirmation: 'password'},
-  { email: 'adulte3@test.com', password: 'password', password_confirmation: 'password'}
+  { email: 'manu.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
+  { email: 'isa.vareilles@gmail.com', password: 'password', password_confirmation: 'password'},
+  { email: 'beavs@free.fr', password: 'password', password_confirmation: 'password'},
+  { email: 'lodv@noos.fr', password: 'password', password_confirmation: 'password'}
 ]
 
 rooms = [
@@ -232,14 +232,6 @@ puts 'Creating test users...'
 User.create(users)
 puts 'Users created'
 
-puts 'Creating fake profiles'
-counter = 0
-User.all.each do |user|
-  counter += 1
-  user.profile.update_attributes(first_name: "Jean-#{counter}", last_name: 'Neige')
-end
-puts 'Profiles created'
-
 puts 'Creating user profiles'
 User.all.each { |user| user.profile }
 puts 'Profiles created'
@@ -257,7 +249,10 @@ Room.create(rooms)
 puts 'Rooms created....'
 
 puts 'Creating Administrators...'
-Administrator.create(email: 'gabriel.vareilles@gmail.com', password: 'password', first_name: 'Gabriel', last_name: 'de Vareilles')
+Administrator.create(email: 'gabriel.vareilles@gmail.com', password: 'inmanibusdominisorsmea', first_name: 'Gabriel', last_name: 'de Vareilles')
+Administrator.create(email: 'manu.vareilles@gmail.com', password: 'inmanibusdominisorsmea', first_name: 'Emmanuel', last_name: 'de Vareilles')
+Administrator.create(email: 'lodv@noos.fr', password: 'inmanibusdominisorsmea', first_name: 'Louis', last_name: 'de Vareilles')
+Administrator.create(email: 'beavs@free.fr', password: 'inmanibusdominisorsmea', first_name: 'Béatrix', last_name: 'de Vareilles')
 # Administrator.create(email: "gabriel.vareilles@gmail.com", password: "password", first_name: "Gabriel", last_name: "de Vareilles")
 # Administrator.create(email: "gabriel.vareilles@gmail.com", password: "password", first_name: "Gabriel", last_name: "de Vareilles")
 puts 'Administrators created...'

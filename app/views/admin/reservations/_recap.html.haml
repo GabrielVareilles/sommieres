@@ -15,7 +15,7 @@
           %tbody
             - item.object.item_users.each do |iu|
               %tr
-                %td{scope: 'row'}= iu.user.full_name
+                %td{scope: 'row'}= iu.profile.full_name
                 %td= iu.start
                 %td= iu.stop
                 %td= iu.nights

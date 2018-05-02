@@ -63,7 +63,7 @@ Trestle.resource(:reservations) do
     end
 
     def user
-      ItemUser.find(params[:user_id]).destroy
+      Profile.find(params[:profile_id]).destroy
       redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
     end
 

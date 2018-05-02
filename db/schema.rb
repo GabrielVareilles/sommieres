@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_05_01_090845) do
   end
 
   create_table "item_users", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "profile_id"
     t.bigint "item_id"
     t.bigint "pricing_id"
     t.date "start"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2018_05_01_090845) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_users_on_item_id"
     t.index ["pricing_id"], name: "index_item_users_on_pricing_id"
-    t.index ["user_id"], name: "index_item_users_on_user_id"
+    t.index ["profile_id"], name: "index_item_users_on_profile_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2018_05_01_090845) do
 
   add_foreign_key "item_users", "items"
   add_foreign_key "item_users", "pricings"
-  add_foreign_key "item_users", "users"
+  add_foreign_key "item_users", "profiles"
   add_foreign_key "items", "reservations"
   add_foreign_key "items", "rooms"
   add_foreign_key "profiles", "users"

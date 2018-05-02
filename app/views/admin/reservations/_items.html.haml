@@ -18,7 +18,7 @@
           %tbody
             - item.object.item_users.each do |iu|
               %tr
-                %td= iu.user.full_name
+                %td= iu.profile.full_name
                 %td= iu.start
                 %td= iu.stop
                 %td= iu.nights

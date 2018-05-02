@@ -28,15 +28,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :profile
+
   has_one :profile, dependent: :destroy
   has_many :reservations
   delegate :full_name, to: :profile
 
-  def name
-    profile.full_name
-  end
-
   def profile
     super.blank? ? Profile.create(user: self) : super
   end
+
 end

@@ -1,10 +1,13 @@
 Trestle.resource(:profiles) do
   menu do
-    item :utilisateurs, icon: "fa fa-users", group: :gestion_operationnelle
+    item :profiles_utilisateurs, icon: "fa fa-users", group: :gestion_operationnelle
   end
 
+  scope :all, -> { Profile.includes(:user).all }, default: true
+  scope :famille, -> { Profile.includes(:user).where.not(user: nil) }
+  scope :invités, -> { Profile.includes(:user).where(user: nil) }
+
   search do |query|
-    p query
     if query
       Profile.where("lower(first_name) LIKE :query", query: "%#{query.downcase}%")
              .or(Profile.where("lower(last_name) LIKE :query", query: "%#{query.downcase}%"))
@@ -18,7 +21,7 @@ Trestle.resource(:profiles) do
 
   table do
     column :email do |record|
-      record.user.email
+      record.user ? record.email : 'Profil invité'
     end
     column :prenom do |record|
       record.first_name
@@ -37,9 +40,9 @@ Trestle.resource(:profiles) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |profile|
-    row do
-      col(sm: 6) { text_field_tag(:email, profile.user.email, disabled: true, class: 'form-control') }
-    end
+    # row do
+    #   col(sm: 6) { text_field_tag(:email, profile.user.email, disabled: true, class: 'form-control') }
+    # end
     text_field :first_name, label: 'Prénom'
     text_field :last_name, label: 'Nom'
     date_field :birth_date, label: 'Date de naissance'

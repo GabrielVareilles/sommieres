@@ -67,7 +67,12 @@ class Reservation < ApplicationRecord
 
   def participants
     # TODO decorator
-    item_users.map { |iu| '<p>' + iu.user.profile.full_name + '</p>' }.join
+    html = '<br>'
+    items.map do |item|
+      html += "<strong>*** #{item.room.name} ***</strong>"
+      html += item.item_users.map { |iu| '<p>' + iu.profile.full_name + '</p>' }.join
+    end
+    html
   end
 
   def full_name

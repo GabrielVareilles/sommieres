@@ -20,7 +20,8 @@
 #
 
 class Profile < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
+  delegate :email, to: :user
 
   def age
     return nil unless birth_date
