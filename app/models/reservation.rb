@@ -48,6 +48,14 @@ class Reservation < ApplicationRecord
     item_users.size
   end
 
+  def capacity
+    foot_print = 0
+    items.each do |item|
+      foot_print += item.room.capacity <= item.item_users.size ? item.room.capacity : item.item_users.size
+    end
+    foot_print
+  end
+
   def status_label
     # TODO decorator
     '<span class="' + "label label-#{btn_class.to_s}" + '">' + status + '</span>'

@@ -5,9 +5,9 @@
     = link_to edit_reservations_admin_path(reservation) do
       %span{class: "label label-#{reservation.btn_class}", style: "font-size: 11px", 'data-container' => 'body', 'data-trigger' => 'hover', 'data-placement' => 'bottom', 'data-title' => "Titulaire: #{reservation.full_name} #{reservation.status_label} prix: #{reservation.total_price} €",'data-html' => 'true', 'data-content' => "#{reservation.participants}"  }= reservation.people_count
   %br
-  - people_count = reservations.map(&:people_count).reduce(:+)
-  - if people_count
-    - percent = (people_count / @capacity.to_f * 100).round.to_s
+  - foot_print = reservations.map(&:capacity).reduce(:+)
+  - if foot_print
+    - percent = (foot_print / @capacity.to_f * 100).round.to_s
     %br
     .progress
       .progress-bar{"role" => 'progressbar', "aria-valuenow" => percent, "aria-valuemin" => '0', "aria-valuemax" => '30', 'style' => "width: #{percent}%;" }
