@@ -1,26 +1,26 @@
 .nested-fields-container
-  = form.fields_for :items do |item|
-    .panel-body
-      .row
-        = item.object.room.name
-        %table{class: 'table'}
-          %thead{class: 'thead-dark'}
+  .panel-body
+    .row
+      %table{class: 'table'}
+        %thead{class: 'thead-dark'}
+          %tr
+            %th{scope: 'col'} nom
+            %th{scope: 'col'} chambre
+            %th{scope: 'col'} arrivée
+            %th{scope: 'col'} départ
+            %th{scope: 'col'} nuits
+            %th{scope: 'col'} tarif
+            %th{scope: 'col'} sous-total
+        %tbody
+          - reservation.item_users.each do |iu|
             %tr
-              %th{scope: 'col'} nom
-              %th{scope: 'col'} arrivée
-              %th{scope: 'col'} départ
-              %th{scope: 'col'} nuits
-              %th{scope: 'col'} tarif
-              %th{scope: 'col'} sous-total
-          %tbody
-            - item.object.item_users.each do |iu|
-              %tr
-                %td{scope: 'row'}= iu.profile.full_name
-                %td= iu.start
-                %td= iu.stop
-                %td= iu.nights
-                %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
-                %td= iu.price
+              %td{scope: 'row'}= iu.profile.full_name
+              %td= iu.item.room.name
+              %td= iu.start
+              %td= iu.stop
+              %td= iu.nights
+              %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
+              %td= iu.price
 .nested-fields-container
   .panel-body
     .row

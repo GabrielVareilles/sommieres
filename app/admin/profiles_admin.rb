@@ -1,6 +1,6 @@
 Trestle.resource(:profiles) do
   menu do
-    item :profiles_utilisateurs, icon: "fa fa-users", group: :gestion_operationnelle
+    item "Profils famille / invités", icon: "fa fa-user-circle", group: :gestion_utilisateurs
   end
 
   scope :all, -> { Profile.includes(:user).all }, default: true
@@ -40,9 +40,6 @@ Trestle.resource(:profiles) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |profile|
-    # row do
-    #   col(sm: 6) { text_field_tag(:email, profile.user.email, disabled: true, class: 'form-control') }
-    # end
     text_field :first_name, label: 'Prénom'
     text_field :last_name, label: 'Nom'
     date_field :birth_date, label: 'Date de naissance'

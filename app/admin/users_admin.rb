@@ -1,6 +1,6 @@
 Trestle.resource(:users) do
   menu do
-    item :comptes_utilisateurs, icon: "fa fa-users", group: :gestion_operationnelle
+    item :comptes_famille, icon: "fa fa-users", group: :gestion_utilisateurs
   end
 
   # Customize the table columns shown on the index view.

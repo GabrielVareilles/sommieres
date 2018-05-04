@@ -99,8 +99,6 @@ class Reservation < ApplicationRecord
     user.profile.full_name
   end
 
-  private
-
   def reservation_empty?
     return nil if items.empty?
     return nil if items.first.item_users.empty?
