@@ -42,6 +42,10 @@ class ItemUser < ApplicationRecord
   end
 
   def price
-    nights * pricing.price_cents / 100.0
+    nights * pricing.price_cents / 100.0 + maintenance
+  end
+
+  def maintenance
+    pricing.price_cents == 0 ? 0 : nights * 1.80
   end
 end

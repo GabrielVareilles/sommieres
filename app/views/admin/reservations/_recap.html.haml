@@ -1,45 +1,43 @@
-.nested-fields-container
-  .panel-body
-    .row
-      %table{class: 'table'}
-        %thead{class: 'thead-dark'}
-          %tr
-            %th{scope: 'col'} nom
-            %th{scope: 'col'} chambre
-            %th{scope: 'col'} arrivée
-            %th{scope: 'col'} départ
-            %th{scope: 'col'} nuits
-            %th{scope: 'col'} tarif
-            %th{scope: 'col'} sous-total
-        %tbody
-          - reservation.item_users.each do |iu|
-            %tr
-              %td{scope: 'row'}= iu.profile.full_name
-              %td= iu.item.room.name
-              %td= iu.start
-              %td= iu.stop
-              %td= iu.nights
-              %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
-              %td= iu.price
-.nested-fields-container
-  .panel-body
-    .row
-      %table{class: 'table'}
-        %thead{class: 'thead-dark'}
-          %tr
-            %th{scope: 'col'} Saison
-            %th{scope: 'col'} Réduction
-            %th{scope: 'col'} Début
-            %th{scope: 'col'} Fin
-            %th{scope: 'col'} Nombre de participants
-            %th{scope: 'col'} Nombre de nuits
-            %th{scope: 'col'} Prix total
-        %tbody
-          %tr
-            %td= reservation.modifier.name
-            %td= reservation.modifier.percent
-            %td= reservation.start
-            %td= reservation.stop
-            %td= reservation.people_count
-            %td= reservation.night_count
-            %td= reservation.total_price
+
+
+.table-responsive
+  %table{class: 'table table-hover'}
+    %thead
+      %tr
+        %th{scope: 'col'} Nom
+        %th{scope: 'col'} Chambre
+        %th{scope: 'col'} Arrivée
+        %th{scope: 'col'} Départ
+        %th{scope: 'col'} Nuits
+        %th{scope: 'col'} Prix par nuit
+        %th{scope: 'col'} Frais d'entretien [1.80€/nuit]
+        %th{scope: 'col'} Sous-total
+    %tbody
+      - reservation.item_users.each_with_index do |iu, index|
+        %tr{class: "info"}
+          %td{scope: 'row'}= iu.profile.full_name
+          %td= iu.item.room.name
+          %td= iu.start
+          %td= iu.stop
+          %td= iu.nights
+          %td= "#{iu.pricing.price_cents / 100.0}"
+          %td= iu.maintenance
+          %td= iu.price
+  %br
+  %table{class: 'table table-hover'}
+    %thead
+      %tr
+        %th{scope: 'col'} Saison
+        %th{scope: 'col'} Nombre de participants
+        %th{scope: 'col'} Nombre de nuits
+        %th{scope: 'col'} Total location et ménage
+        %th{scope: 'col'} Frais de réservation [0,008%]
+        %th{scope: 'col'} Prix total
+    %tbody
+      %tr{class: 'info'}
+        %td= reservation.modifier.name
+        %td= reservation.people_count
+        %td= reservation.night_count
+        %td= reservation.total_price_without_fees
+        %td= reservation.technical_fees
+        %td= reservation.total_price
