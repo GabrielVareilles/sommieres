@@ -13,16 +13,20 @@
         %th{scope: 'col'} Frais d'entretien [1.80€/nuit]
         %th{scope: 'col'} Sous-total
     %tbody
-      - reservation.item_users.each_with_index do |iu, index|
-        %tr{class: "info"}
-          %td{scope: 'row'}= iu.profile.full_name
-          %td= iu.item.room.name
-          %td= iu.start
-          %td= iu.stop
-          %td= iu.nights
-          %td= "#{iu.pricing.price_cents / 100.0}"
-          %td= iu.maintenance
-          %td= iu.price
+      - counter = 0
+      - reservation_items.each do |room_id, ius|
+        - color = counter.even? ? "active" : ""
+        - counter += 1
+        - ius.each do |iu|
+          %tr{class: color}
+            %td{scope: 'row'}= iu.profile.full_name
+            %td= iu.item.room.name
+            %td= iu.start
+            %td= iu.stop
+            %td= iu.nights
+            %td= "#{iu.pricing.price_cents / 100.0}"
+            %td= iu.maintenance
+            %td= iu.price
   %br
   %table{class: 'table table-hover'}
     %thead

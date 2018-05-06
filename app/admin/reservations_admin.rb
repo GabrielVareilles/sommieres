@@ -51,8 +51,9 @@ Trestle.resource(:reservations) do
       end
       render 'items'
     end
+    reservation_items = reservation.item_users.group_by { |iu| iu.item.room_id }
     tab :recapitulatif do
-      render 'recap', reservation: reservation if reservation.persisted?
+      render 'recap', reservation: reservation,reservation_items: reservation_items if reservation.persisted?
     end
   end
 

@@ -56,12 +56,13 @@ class Reservation < ApplicationRecord
     item_users.size
   end
 
-  def capacity
-    foot_print = 0
+  def occupancy(date)
+    occupancy = 0
     items.each do |item|
-      foot_print += item.room.capacity <= item.item_users.size ? item.room.capacity : item.item_users.size
+      count = item.item_users.map { |item_user| item_user_by_date(item_user, date) }.compact
+      occupancy += item.room.capacity <= count.size ? item.room.capacity : count.size
     end
-    foot_print
+    occupancy
   end
 
   def status_label
@@ -81,22 +82,40 @@ class Reservation < ApplicationRecord
     end
   end
 
-  def participants
+  def item_user_by_date(item_user, date)
+    if (item_user.start..item_user.stop).include? date
+      item_user
+    else
+      nil
+    end
+  end
+
+  def item_users_by_date(item, date)
+    users = item.item_users.map do |item_user|
+      item_user_by_date(item_user, date)
+    end
+    users.compact
+  end
+
+  def participants(date)
     # TODO decorator
     html = ''
     html += '<div class="container">'
     html += "<div class='row'>"
     items.map do |item|
-      html += "<div class='col-xs-4'>"
-      html += "<div class='panel panel-default'>"
-      html += "<div class='panel-heading'>"
-      html += "<span><i class='fa fa-bed'></i>  #{item.room.name}</span>"
-      html += "</div>"
-      html += "<div class='panel-body'>"
-      html += '<ul class="list-unstyled">'
-      html += item.item_users.map { |iu| '<li><i class="fa fa-user"></i>  ' + iu.profile.full_name + '</li>' }.join
-      html += '</ul>'
-      html += "</div></div></div>"
+      users = item_users_by_date(item, date)
+      unless users.empty?
+        html += "<div class='col-xs-4'>"
+        html += "<div class='panel panel-default'>"
+        html += "<div class='panel-heading'>"
+        html += "<span><i class='fa fa-bed'></i>  #{item.room.name}</span>"
+        html += "</div>"
+        html += "<div class='panel-body'>"
+        html += '<ul class="list-unstyled">'
+        html += users.map { |iu| '<li><i class="fa fa-user"></i>  ' + iu.profile.full_name + '</li>' }.join
+        html += '</ul>'
+        html += "</div></div></div>"
+      end
     end
     html += "</div></div>"
     html
