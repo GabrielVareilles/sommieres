@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -35,7 +37,6 @@ class User < ApplicationRecord
   delegate :full_name, to: :profile
 
   def profile
-    super.blank? ? Profile.create(user: self) : super
+    super.presence || Profile.create(user: self)
   end
-
 end

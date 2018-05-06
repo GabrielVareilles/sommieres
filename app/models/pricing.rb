@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pricings
@@ -12,5 +14,4 @@
 
 class Pricing < ApplicationRecord
   monetize :price_cents
-
 end

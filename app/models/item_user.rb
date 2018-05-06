@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: item_users
@@ -30,11 +32,11 @@ class ItemUser < ApplicationRecord
   belongs_to :pricing
 
   def start
-    super.blank? ? item.reservation.start : super
+    super.presence || item.reservation.start
   end
 
   def stop
-    super.blank? ? item.reservation.stop : super
+    super.presence || item.reservation.stop
   end
 
   def nights
@@ -46,6 +48,6 @@ class ItemUser < ApplicationRecord
   end
 
   def maintenance
-    pricing.price_cents == 0 ? 0 : nights * 1.80
+    pricing.name.include?('-12') ? 0 : nights * 1.80
   end
 end

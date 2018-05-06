@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reservations
@@ -66,28 +68,24 @@ class Reservation < ApplicationRecord
   end
 
   def status_label
-    # TODO decorator
-    '<span class="' + "label label-#{btn_class.to_s}" + '">' + status + '</span>'
+    # TODO: decorator
+    '<span class="' + "label label-#{btn_class}" + '">' + status + '</span>'
   end
 
   def btn_class
-    # TODO decorator
+    # TODO: decorator
     case status
     when 'pending'
-     :warning
+      :warning
     when 'accepted'
-     :primary
+      :primary
     when 'payed'
-     :success
+      :success
     end
   end
 
   def item_user_by_date(item_user, date)
-    if (item_user.start..item_user.stop).include? date
-      item_user
-    else
-      nil
-    end
+    item_user if (item_user.start..item_user.stop).cover? date
   end
 
   def item_users_by_date(item, date)
@@ -98,31 +96,30 @@ class Reservation < ApplicationRecord
   end
 
   def participants(date)
-    # TODO decorator
+    # TODO: decorator
     html = ''
     html += '<div class="container">'
     html += "<div class='row'>"
     items.map do |item|
       users = item_users_by_date(item, date)
-      unless users.empty?
-        html += "<div class='col-xs-4'>"
-        html += "<div class='panel panel-default'>"
-        html += "<div class='panel-heading'>"
-        html += "<span><i class='fa fa-bed'></i>  #{item.room.name}</span>"
-        html += "</div>"
-        html += "<div class='panel-body'>"
-        html += '<ul class="list-unstyled">'
-        html += users.map { |iu| '<li><i class="fa fa-user"></i>  ' + iu.profile.full_name + '</li>' }.join
-        html += '</ul>'
-        html += "</div></div></div>"
-      end
+      next if users.empty?
+      html += "<div class='col-xs-4'>"
+      html += "<div class='panel panel-default'>"
+      html += "<div class='panel-heading'>"
+      html += "<span><i class='fa fa-bed'></i>  #{item.room.name}</span>"
+      html += '</div>'
+      html += "<div class='panel-body'>"
+      html += '<ul class="list-unstyled">'
+      html += users.map { |iu| '<li><i class="fa fa-user"></i>  ' + iu.profile.full_name + '</li>' }.join
+      html += '</ul>'
+      html += '</div></div></div>'
     end
-    html += "</div></div>"
+    html += '</div></div>'
     html
   end
 
   def full_name
-    # TODO decorator
+    # TODO: decorator
     user.profile.full_name
   end
 
@@ -132,21 +129,10 @@ class Reservation < ApplicationRecord
   end
 
   def item_users
-    items.map { |item| item.item_users}.flatten
+    items.map(&:item_users).flatten
   end
 
   def nights(item_user)
     (item_user.stop - item_user.start).to_i
   end
 end
-
-
-
-
-
-
-
-
-
-
-

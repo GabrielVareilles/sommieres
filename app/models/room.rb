@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: rooms
@@ -15,14 +17,13 @@
 
 class Room < ApplicationRecord
   # status if the room is available to be booked
-  scope :available, -> { where(status: 'disponible')}
-  scope :unavailable, -> { where(status: 'indisponible')}
+  scope :available, -> { where(status: 'disponible') }
+  scope :unavailable, -> { where(status: 'indisponible') }
 
   enum status: { disponible: 0, indisponible: 1 }
 
-
   def self.expositions
-    ["village", "clain", "cour d'honneur", "jardin haut"]
+    ['village', 'clain', "cour d'honneur", 'jardin haut']
   end
 
   def self.total_capacity
