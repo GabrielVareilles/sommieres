@@ -37,6 +37,9 @@ gem 'trestle-auth'
 gem 'trestle-search'
 gem "cocoon"
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 gem 'money-rails', '~>1'
 gem "simple_calendar", "~> 2.0"
 

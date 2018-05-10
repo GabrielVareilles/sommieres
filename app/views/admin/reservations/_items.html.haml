@@ -1,34 +1,7 @@
 .nested-fields-container
-  = form.label :liste_des_chambres
   = form.fields_for :items do |item|
-    .panel-body
-      .row
-        %h4= item.object.room.name
-        %span= link_to 'X', item_reservations_admin_path(item.object.reservation, item_id: item.object.id), method: :delete
-        %table{class: 'table'}
-          %thead
-            %tr
-              %th nom
-              %th arrivée
-              %th départ
-              %th nuits
-              %th tarif
-              %th sous-total
-              %th supprimer
-          %tbody
-            - item.object.item_users.each do |iu|
-              %tr
-                %td= iu.profile.full_name
-                %td= iu.start
-                %td= iu.stop
-                %td= iu.nights
-                %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
-                %td= iu.price
-                %td= link_to 'X', user_reservations_admin_path(item.object.reservation, user_id: iu.id), method: :delete
-
     = render 'item_fields', f: item
 
   .nested-field-links
     = link_to_add_association 'Ajouter un chambre', form, :items, class: "btn btn-success"
-  .panel-body
 

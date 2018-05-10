@@ -1,7 +1,5 @@
-
-
-.table-responsive
-  %table{class: 'table table-hover'}
+.table-responsive-sm
+  %table{class: 'table table-sm table-hover'}
     %thead
       %tr
         %th{scope: 'col'} Nom
@@ -9,8 +7,8 @@
         %th{scope: 'col'} Arrivée
         %th{scope: 'col'} Départ
         %th{scope: 'col'} Nuits
-        %th{scope: 'col'} Prix par nuit
-        %th{scope: 'col'} Frais d'entretien [1.80€/nuit]
+        %th{scope: 'col'} Prix/nuit
+        %th{scope: 'col'} Ménages [1.80€/nuit]
         %th{scope: 'col'} Sous-total
     %tbody
       - counter = 0
@@ -21,8 +19,8 @@
           %tr{class: color}
             %td{scope: 'row'}= iu.profile.full_name
             %td= iu.item.room.name
-            %td= iu.start
-            %td= iu.stop
+            %td= iu.start.strftime("%d/%m/%Y")
+            %td= iu.stop.strftime("%d/%m/%Y")
             %td= iu.nights
             %td= "#{iu.pricing.price_cents / 100.0}"
             %td= iu.maintenance
@@ -32,9 +30,9 @@
     %thead
       %tr
         %th{scope: 'col'} Saison
-        %th{scope: 'col'} Nombre de participants
-        %th{scope: 'col'} Nombre de nuits
-        %th{scope: 'col'} Total location et ménage
+        %th{scope: 'col'} Participants
+        %th{scope: 'col'} Nuits
+        %th{scope: 'col'} Location et Ménage
         %th{scope: 'col'} Frais de réservation [0,008%]
         %th{scope: 'col'} Prix total
     %tbody

@@ -4,6 +4,30 @@
 
     .row
       .col-xs-4.col-sm-4= f.select :room_id, Room.all, label: ''
+  .panel-body
+
+    %span= link_to 'Retirer la chambre', item_reservations_admin_path(f.object.reservation, item_id: f.object.id), method: :delete
+    %table{class: 'table'}
+      %thead
+        %tr
+          %th nom
+          %th arrivée
+          %th départ
+          %th nuits
+          %th tarif
+          %th sous-total
+          %th actions
+      %tbody
+        - f.object.item_users.each do |iu|
+          %tr
+            %td= iu.profile.full_name
+            %td= iu.start
+            %td= iu.stop
+            %td= iu.nights
+            %td= "#{iu.pricing.name}: #{iu.pricing.price_cents / 100.0} €"
+            %td= iu.price
+            %td= link_to 'supprimer', user_reservations_admin_path(f.object.reservation, user_id: iu.id), method: :delete
+
 
   .nested-field-links
     = link_to_add_association 'Ajouter une personne', f, :item_users, class: "btn btn-success"

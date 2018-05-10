@@ -46,8 +46,8 @@ Trestle.resource(:reservations) do
       row do
         col(xs: 3) { select :user_id, User.includes(:profile).all, label: 'Personne principale' }
         col(xs: 3) { select :modifier_id, Modifier.all, label: 'Saison' }
-        col(xs: 3) { date_field :start, label: "Jour d'arrivée" }
-        col(xs: 3) { date_field :stop, label: "Jour de départ"  }
+        col(xs: 3) { date_field :start, label: "Jour d'arrivée", format: '%d/%m/%Y'  }
+        col(xs: 3) { date_field :stop, label: "Jour de départ", format: '%d/%m/%Y'  }
       end
       render 'items'
     end
@@ -79,9 +79,25 @@ Trestle.resource(:reservations) do
       reservation.payed!
       redirect_to edit_reservations_admin_path(Reservation.find(params[:id]))
     end
+
+    def charges
+      @reservation = Reservation.find(params[:id])
+      @reservation_items = @reservation.item_users.group_by { |iu| iu.item.room_id }
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Your_filename",
+          template: "admin/reservations/charges.html.haml",
+          layout: 'pdf.html',
+          page_size: 'A4',
+          orientation: 'Landscape'
+        end
+      end
+    end
   end
 
   routes do
+    get :charges, on: :member
     put :accept, on: :member
     put :payed, on: :member
     delete :item, on: :member
