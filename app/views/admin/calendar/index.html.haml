@@ -1,4 +1,4 @@
-= month_calendar(attribute: :start, end_attribute: :stop, events: @reservations) do |date, reservations|
+= month_calendar(attribute: :start, end_attribute: :last_night_day, events: @reservations) do |date, reservations|
   = date.day
   %br
   - reservations.each do |reservation|

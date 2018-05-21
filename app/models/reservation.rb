@@ -53,6 +53,10 @@ class Reservation < ApplicationRecord
     item_users.reduce(0) { |acc, item_user| acc + nights(item_user) }
   end
 
+  def last_night_day
+    stop - 1.day
+  end
+
   def people_count
     reservation_empty?
     item_users.size

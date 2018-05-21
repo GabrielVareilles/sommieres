@@ -1,0 +1,41 @@
+.table-responsive-sm
+  %table{class: 'table table-sm table-hover'}
+    %thead
+      %tr
+        %th{scope: 'col'} Nom
+        %th{scope: 'col'} Chambre
+        %th{scope: 'col'} Nuits
+        %th{scope: 'col'} Prix/nuit
+        %th{scope: 'col'} Ménages
+        %th{scope: 'col'} Sous-total
+    %tbody
+      - counter = 0
+      - reservation_items.each do |room_id, ius|
+        - color = counter.even? ? "active" : ""
+        - counter += 1
+        - ius.each do |iu|
+          %tr{class: color}
+            %td{scope: 'row'}= iu.profile.full_name
+            %td= iu.item.room.name
+            %td= iu.nights
+            %td= "#{iu.pricing.price_cents / 100.0}"
+            %td= iu.maintenance
+            %td= iu.price
+  %br
+  %table{class: 'table table-hover'}
+    %thead
+      %tr
+        %th{scope: 'col'} Saison
+        %th{scope: 'col'} Participants
+        %th{scope: 'col'} Nuits
+        %th{scope: 'col'} Location et Ménage
+        %th{scope: 'col'} Frais de réservation
+        %th{scope: 'col'} Prix total
+    %tbody
+      %tr{class: 'info'}
+        %td= reservation.modifier.name
+        %td= reservation.people_count
+        %td= reservation.night_count
+        %td= reservation.total_price_without_fees
+        %td= reservation.technical_fees
+        %td= reservation.total_price

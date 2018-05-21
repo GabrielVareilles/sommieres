@@ -3,10 +3,11 @@
     = link_to_remove_association icon("fa fa-close"), f, class: "btn btn-default btn-sm"
 
     .row
-      .col-xs-4.col-sm-4= f.select :room_id, Room.all, label: ''
+      .col-xs-4.col-sm-4
+        = f.select :room_id, Room.all
+        - if f.object.reservation.persisted?
+          = link_to 'Retirer la chambre', item_reservations_admin_path(f.object.reservation, item_id: f.object.id), method: :delete
   .panel-body
-
-    %span= link_to 'Retirer la chambre', item_reservations_admin_path(f.object.reservation, item_id: f.object.id), method: :delete
     %table{class: 'table'}
       %thead
         %tr

@@ -86,11 +86,10 @@ Trestle.resource(:reservations) do
       respond_to do |format|
         format.html
         format.pdf do
-          render pdf: "Your_filename",
+          render pdf: "reservation n° #{@reservation.id}",
           template: "admin/reservations/charges.html.haml",
           layout: 'pdf.html',
-          page_size: 'A4',
-          orientation: 'Landscape'
+          page_size: 'A4'
         end
       end
     end
