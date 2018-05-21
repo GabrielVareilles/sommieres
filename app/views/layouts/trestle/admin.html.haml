@@ -9,7 +9,7 @@
       %meta{:content => "no-cache", :name => "turbolinks-cache-control"}/
       %meta{:content => "#{Trestle.config.path}", :name => "turbolinks-root"}/
     = csrf_meta_tags
-    %link{:href => "#{image_url('favicon')}", :rel => "shortcut icon"}/
+    %link{:href => "#{image_url('favicon.png')}", :rel => "shortcut icon"}/
     %title= [yield(:title), Trestle.config.site_title].join(' :: ')
     = stylesheet_link_tag "trestle/admin", 'data-turbolinks-track': 'reload'
     = hook :stylesheets
