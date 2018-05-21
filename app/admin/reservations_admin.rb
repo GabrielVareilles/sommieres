@@ -87,9 +87,11 @@ Trestle.resource(:reservations) do
         format.html
         format.pdf do
           render pdf: "reservation n° #{@reservation.id}",
+          dpi: 72,
           template: "admin/reservations/charges.html.haml",
           layout: 'pdf.html',
-          page_size: 'A4'
+          page_size: 'A4',
+          title: "Sommières-réservation n°#{@reservation.id}"
         end
       end
     end
