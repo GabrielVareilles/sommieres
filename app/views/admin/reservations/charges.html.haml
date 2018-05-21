@@ -5,29 +5,20 @@
         %i.fa.fa-search-plus.float-xs-left.icon
         %h2 SCI du Domaine du Château de Sommières
         %p Participation aux charges d’habitation par anticipation
-
-      .row
-        .col-md-12
-          .card
-            .card-header Rappel du réglement pour les réservations
-            .card-block
-              Toute réservation ne sera prise en compte que si elle est accompagnée du règlement correspondant.
-              %br/
-              Consultez-vous en famille pour étaler les séjours si vous êtes nombreux.
-              Conformez-vous strictement  au  plan  d’occupation  de  chaque  chambre  qui  vous  sera communiqué avant votre  séjour:
-              Nombre  et  caractéristiques des  lits  pour  les  draps, occupation  uniquement  par  des  adultes  soigneux  et  responsables, occupation  par  des enfants.
-              Cela est fait afin de préserver la qualité d’accueil de Sommières.
-              Par exemple, plus de dortoirs avec les matelas par terre !
-              %br/
-              En  période  d’occupation  chargée,  les  réservations  vont  du  samedi au samedi. Il n’est donc pas question d’arriver le vendredi pour repartir le dimanche soir. Si vous ne pouvez pas faire autrement, il vous faudra l’accord du gérant qui détermineleplanning  en  fonction  des  réservations  arrêtées  et  enregistrées.  Cela  permettra d’accueillir les arrivants dans de bonnes conditions en laissant aux partants le temps de ranger correctement et de libérer effectivement les lieux.
   .row
     .col-md-12
       .card
-        .card-header
-          %h5.text-xs-center
-            %strong= "Récapitulatif de la réservation du #{@reservation.start.strftime('%d-%m-%y')} au #{@reservation.stop.strftime('%d-%m-%y')}"
+        .card-header Rappel du réglement pour les réservations
         .card-block
-          = render 'recap_invoice', reservation: @reservation, reservation_items: @reservation_items
+          Toute réservation ne sera prise en compte que si elle est accompagnée du règlement correspondant.
+          %br/
+          Consultez-vous en famille pour étaler les séjours si vous êtes nombreux.
+          Conformez-vous strictement  au  plan  d’occupation  de  chaque  chambre  qui  vous  sera communiqué avant votre  séjour:
+          Nombre  et  caractéristiques des  lits  pour  les  draps, occupation  uniquement  par  des  adultes  soigneux  et  responsables, occupation  par  des enfants.
+          Cela est fait afin de préserver la qualité d’accueil de Sommières.
+          Par exemple, plus de dortoirs avec les matelas par terre !
+          %br/
+          En  période  d’occupation  chargée,  les  réservations  vont  du  samedi au samedi. Il n’est donc pas question d’arriver le vendredi pour repartir le dimanche soir. Si vous ne pouvez pas faire autrement, il vous faudra l’accord du gérant qui détermineleplanning  en  fonction  des  réservations  arrêtées  et  enregistrées.  Cela  permettra d’accueillir les arrivants dans de bonnes conditions en laissant aux partants le temps de ranger correctement et de libérer effectivement les lieux.
   .row
     .col-md-12
       .card
@@ -36,6 +27,14 @@
           %strong Payable sur le compte:
           %br/
           M. Louis de Labroue de Vareilles
+  .row.alwaysbreak
+    .col-md-12
+      .card
+        .card-header
+          %h5.text-xs-center
+            %strong= "Récapitulatif de la réservation du #{@reservation.start.strftime('%d-%m-%y')} au #{@reservation.stop.strftime('%d-%m-%y')}"
+        .card-block
+          = render 'recap_invoice', reservation: @reservation, reservation_items: @reservation_items
 
 :css
   .card {
@@ -66,3 +65,5 @@
   .table > tbody > tr > .highrow {
       border-top: 3px solid;
   }
+
+  .alwaysbreak { page-break-before: always; }
