@@ -1,5 +1,8 @@
 - if resa.status == 'pending'
   = link_to 'Valider la Réservation', accept_reservations_admin_path(resa), method: :put, class: 'btn btn-primary'
+  = link_to 'Imprimer', charges_reservations_admin_path(resa, format: 'pdf'), target: '_blank', class: 'btn btn-success'
 - elsif resa.status == 'accepted'
   = link_to 'Marquer la réservation comme payée', payed_reservations_admin_path(resa), method: :put, class: 'btn btn-danger'
+  = link_to 'Imprimer', charges_reservations_admin_path(resa, format: 'pdf'), target: '_blank', class: 'btn btn-success'
+- else
   = link_to 'Imprimer', charges_reservations_admin_path(resa, format: 'pdf'), target: '_blank', class: 'btn btn-success'

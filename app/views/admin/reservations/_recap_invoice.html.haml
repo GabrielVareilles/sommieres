@@ -1,5 +1,5 @@
 .table-responsive-sm
-  %table{class: 'table table-sm table-hover'}
+  %table{class: 'table table-sm'}
     %thead
       %tr
         %th{scope: 'col'} Nom
@@ -11,10 +11,8 @@
     %tbody
       - counter = 0
       - reservation_items.each do |room_id, ius|
-        - color = counter.even? ? "active" : ""
-        - counter += 1
         - ius.each do |iu|
-          %tr{class: color}
+          %tr
             %td{scope: 'row'}= iu.profile.full_name
             %td= iu.item.room.name
             %td= iu.nights
@@ -22,7 +20,7 @@
             %td= iu.maintenance
             %td= iu.price
   %br
-  %table{class: 'table table-hover'}
+  %table{class: 'table table-sm'}
     %thead
       %tr
         %th{scope: 'col'} Saison
@@ -32,7 +30,7 @@
         %th{scope: 'col'} Frais de réservation
         %th{scope: 'col'} Prix total
     %tbody
-      %tr{class: 'info'}
+      %tr
         %td= reservation.modifier.name
         %td= reservation.people_count
         %td= reservation.night_count

@@ -3,39 +3,43 @@
     .col-md-12
       .text-xs-center
         %i.fa.fa-search-plus.float-xs-left.icon
-        %h2 Remboursement sur avance de charges pour un séjour au château de Sommières
-      %hr/
+        %h2 SCI du Domaine du Château de Sommières
+        %p Participation aux charges d’habitation par anticipation
+
       .row
-        .col-md-6
-          .card.height
-            .card-header Billing Details
+        .col-md-12
+          .card
+            .card-header Rappel du réglement pour les réservations
             .card-block
-              %strong David Peere:
+              Toute réservation ne sera prise en compte que si elle est accompagnée du règlement correspondant.
               %br/
-              1111 Army Navy Drive
+              Consultez-vous en famille pour étaler les séjours si vous êtes nombreux.
+              Conformez-vous strictement  au  plan  d’occupation  de  chaque  chambre  qui  vous  sera communiqué avant votre  séjour:
+              Nombre  et  caractéristiques des  lits  pour  les  draps, occupation  uniquement  par  des  adultes  soigneux  et  responsables, occupation  par  des enfants.
+              Cela est fait afin de préserver la qualité d’accueil de Sommières.
+              Par exemple, plus de dortoirs avec les matelas par terre !
               %br/
-              Arlington
-              %br/
-              VA
-              %br/
-              %strong 22 203
-              %br/
+              En  période  d’occupation  chargée,  les  réservations  vont  du  samedi au samedi. Il n’est donc pas question d’arriver le vendredi pour repartir le dimanche soir. Si vous ne pouvez pas faire autrement, il vous faudra l’accord du gérant qui détermineleplanning  en  fonction  des  réservations  arrêtées  et  enregistrées.  Cela  permettra d’accueillir les arrivants dans de bonnes conditions en laissant aux partants le temps de ranger correctement et de libérer effectivement les lieux.
   .row
     .col-md-12
       .card
         .card-header
-          %h3.text-xs-center
-            %strong Order summary
+          %h5.text-xs-center
+            %strong= "Récapitulatif de la réservation du #{@reservation.start.strftime('%d-%m-%y')} au #{@reservation.stop.strftime('%d-%m-%y')}"
         .card-block
           = render 'recap_invoice', reservation: @reservation, reservation_items: @reservation_items
+  .row
+    .col-md-12
+      .card
+        .card-header SCI du domaine du Château de Sommières
+        .card-block
+          %strong Payable sur le compte:
+          %br/
+          M. Louis de Labroue de Vareilles
 
 :css
   .card {
     padding: 5px;
-  }
-
-  .height {
-      min-height: 200px;
   }
 
   .icon {
@@ -48,6 +52,9 @@
       color: #5CB85C;
   }
 
+  .table {
+    font-size: 0.8em;
+  }
   .table > tbody > tr > .emptyrow {
       border-top: none;
   }
