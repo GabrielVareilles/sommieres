@@ -52,8 +52,10 @@ Trestle.resource(:rooms) do
     end
 
     row do
-      room.photos.each do |photo|
-        col(xs: 4) { image_tag(photo, height: '200px') }
+      if room.photos
+        room.photos.each do |photo|
+          col(xs: 4) { image_tag(photo, height: '200px') }
+        end
       end
     end
   end
