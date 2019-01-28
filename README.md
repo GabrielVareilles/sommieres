@@ -16,3 +16,10 @@ This is a Rails 5 app created using [modern-rails-template][]. Please check READ
 [foreman]: https://github.com/ddollar/foreman
 [heroku]: https://www.heroku.com/
 [redis]: https://devcenter.heroku.com/articles/heroku-redis
+
+## todo
+  - make reservations room agnostic by creating an unknown room
+  - make room assocition with items editable
+  - edit pdf to suits people needs
+  - stripe on top of reservations state machine
+  - giant dog
