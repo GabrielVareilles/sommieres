@@ -33,7 +33,7 @@ class Reservation < ApplicationRecord
   enum status: { pending: 0, accepted: 1, payed: 2 }
 
   def total_price
-    (total_price_without_fees + technical_fees).round(2)
+    (total_price_without_fees + technical_fees + total_maintenance_price).round(2)
   end
 
   def technical_fees
@@ -46,6 +46,12 @@ class Reservation < ApplicationRecord
       acc + item_user.price
     end
     (total * modifier.percent / 100.0).round(2)
+  end
+
+  def total_maintenance_price
+    total = item_users.reduce(0) do |acc, item_user|
+      acc + 1.80 * item_user.nights
+    end
   end
 
   def night_count

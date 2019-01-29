@@ -32,7 +32,8 @@
         %th{scope: 'col'} Saison
         %th{scope: 'col'} Participants
         %th{scope: 'col'} Nuits
-        %th{scope: 'col'} Location et Ménage
+        %th{scope: 'col'} Location
+        %th{scope: 'col'} Ménage
         %th{scope: 'col'} Frais de réservation [0,008%]
         %th{scope: 'col'} Prix total
     %tbody
@@ -41,5 +42,6 @@
         %td= reservation.people_count
         %td= reservation.night_count
         %td= reservation.total_price_without_fees
+        %td= reservation.total_maintenance_price
         %td= reservation.technical_fees
         %td= reservation.total_price
