@@ -27,6 +27,7 @@ class Room < ApplicationRecord
   end
 
   def self.total_capacity
-    all.map(&:capacity).reduce(:+)
+    all.select { |room| room.capacity < 40 }
+       .map(&:capacity).reduce(:+)
   end
 end
